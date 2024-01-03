@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-: "${ENV?}"
-: "${ORG_NAME?}"
+: "${TF_VAR_env?}"
+: "${TF_VAR_org_name?}"
+: "${TF_VAR_product_name?}"
+: "${TF_VAR_component_name?}"
+: "${TF_VAR_region?}"
 : "${CI_S3_MINIO_ADM_ENDPOINT?}"
 : "${CI_MINIO_ADM_SA_ACCESS_KEY?}"
-: "${CI_MINIO_ADM_SA_SECRET_KEY?}"
-: "${APP_NAME?}"
-: "${COMPONENT_NAME?}"
 
-BACKEND_CONFIG_BUCKET="${ORG_NAME}-state-${ENV}"
-BACKEND_CONFIG_KEY="${APP_NAME}/${COMPONENT_NAME}/tfstate.json"
-BACKEND_CONFIG_REGION="main"
+BACKEND_CONFIG_BUCKET="${TF_VAR_org_name}-state-${TF_VAR_env}"
+BACKEND_CONFIG_KEY="${TF_VAR_product_name}/${TF_VAR_component_name}/tfstate.json"
+BACKEND_CONFIG_REGION="${TF_VAR_region}"
 
 terraform init -upgrade \
   -backend-config=endpoint="${CI_S3_MINIO_ADM_ENDPOINT}" \
