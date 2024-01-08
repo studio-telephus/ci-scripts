@@ -32,7 +32,7 @@ if [ $tags_length -gt 1 ]; then
   echo "Found additional tags. Proceeding to tag & Push."
   for ((i = 1; i < ${tags_length}; i++)); do
     tg=${tags[$i]}
-    docker tag $CI_REGISTRY_IMAGE:$first_tag $CI_REGISTRY_IMAGE:$tg
+    docker tag $DOCKER_REPOSITORY_URI:$first_tag $DOCKER_REPOSITORY_URI:$tg
     docker push $DOCKER_REPOSITORY_URI:$tg
   done
 else
