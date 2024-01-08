@@ -6,7 +6,7 @@
 
 DOCKER_REPOSITORY_URI="$CI_NEXUS_DOCKER_URL/$CI_REGISTRY_IMAGE"
 
-tags=(${IN//,/ })
+tags=(${CI_PUBLISH_TAGS//,/ })
 first_tag=${tags[0]}
 tags_length=${#tags[@]}
 
