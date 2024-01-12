@@ -8,7 +8,7 @@
 : "${CI_MINIO_ADM_SA_ACCESS_KEY?}"
 : "${CI_MINIO_ADM_SA_SECRET_KEY?}"
 
-BACKEND_CONFIG_BUCKET="${TF_VAR_org_name}-state-${TF_VAR_env}"
+BACKEND_CONFIG_BUCKET="bucket-${TF_VAR_org_name}-state-${TF_VAR_env}"
 BACKEND_CONFIG_KEY="${TF_VAR_product_name}/${TF_VAR_component_name}/tfstate.json"
 BACKEND_CONFIG_REGION="${TF_VAR_region}"
 
