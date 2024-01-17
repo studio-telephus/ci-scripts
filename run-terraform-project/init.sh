@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 : "${TF_VAR_env?}"
 : "${TF_VAR_org_name?}"
-: "${TF_VAR_product_name?}"
-: "${TF_VAR_component_name?}"
-: "${TF_VAR_region?}"
+: "${STATE_PREFIX?}"
+: "${STACK_NAME?}"
+: "${STATE_REGION?}"
 : "${MINIO_ADM_S3_ENDPOINT?}"
 : "${MINIO_ADM_SA_ACCESS_KEY?}"
 : "${MINIO_ADM_SA_SECRET_KEY?}"
 
 BACKEND_CONFIG_BUCKET="bucket-${TF_VAR_org_name}-state-${TF_VAR_env}"
 echo "Preparing for Terraform init: bucket=$BACKEND_CONFIG_BUCKET"
-BACKEND_CONFIG_KEY="${TF_VAR_product_name}/${TF_VAR_component_name}/tfstate.json"
+BACKEND_CONFIG_KEY="${STATE_PREFIX}/${STACK_NAME}/tfstate.json"
 echo "Preparing for Terraform init: key=$BACKEND_CONFIG_KEY"
-BACKEND_CONFIG_REGION="${TF_VAR_region}"
+BACKEND_CONFIG_REGION="${STATE_REGION}"
 echo "Preparing for Terraform init: region=$BACKEND_CONFIG_REGION"
 
 terraform init -upgrade \
